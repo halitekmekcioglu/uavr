@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>User Profile</h1>
+
+    <h2>Kiralanacak UAV (Uçak/Araç/Vasıta) İşlemleri</h2>
+    <ul>
+        <li><a href="#add-uav">UAV Ekle</a></li>
+        <li><a href="#delete-uav">UAV Sil</a></li>
+        <li><a href="#update-uav">UAV Güncelle</a></li>
+        <li><a href="#list-uav">UAV Listele</a></li>
+        <li><a href="#rent-uav">UAV Kirala</a></li>
+    </ul>
+
+    <h3>UAV Özellikleri</h3>
+    <ul>
+        <li>Marka</li>
+        <li>Model</li>
+        <li>Ağırlık</li>
+        <li>Kategori</li>
+        <!-- Add more UAV properties here -->
+    </ul>
+
+    <h2>Üyelerin Taşıt Kiralama Kayıtları</h2>
+    <!-- Display rental records for the user -->
+
+    <h2>Kiralanan UAV İşlemleri</h2>
+    <ul>
+        <li><a href="#delete-rental">Kiralama Sil</a></li>
+        <li><a href="#update-rental">Kiralama Güncelle</a></li>
+        <li><a href="#list-rental">Kiralama Listele</a></li>
+    </ul>
+
+    <h3>Kiralama Özellikleri</h3>
+    <ul>
+        <li>UAV</li>
+        <li>Tarih ve Saat Aralıkları</li>
+        <li>Kiralayan Üye</li>
+        <!-- Add more rental properties here -->
+    </ul>
+
+    <h2>Tüm Listeleme Sayfaları için Filtreleme ve Arama Özellikleri</h2>
+    <!-- Add filter and search options for all listing pages -->
+
+    <!-- Add forms and tables for CRUD operations -->
+{% endblock %}
