@@ -1,11 +1,13 @@
-<!-- login.html -->
+<!-- signup.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+<div class="container">
+    <h2>Signup</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Signup</button>
+    </form>
+</div>
 {% endblock %}

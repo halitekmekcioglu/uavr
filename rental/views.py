@@ -15,13 +15,23 @@ from django.shortcuts import render, redirect
 
 from .forms import UAVForm, RentalForm
 from django.shortcuts import render
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
+def logout_view(request):
+    logout(request)
+    # Redirect to a desired URL after logout
+    return redirect('login.html')  # Redirect to the login page after logout
+
+@login_required
 def base(request):
     return render(request, 'base.html')
 
+@login_required
 def logout(request):
     return render(request, 'base.html')
 
+@login_required
 def profile(request):
     uav_form = UAVForm()
     rental_form = RentalForm()

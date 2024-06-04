@@ -1,5 +1,5 @@
 """
-ASGI config for uav_rental project.
+ASGI config for uav_main project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

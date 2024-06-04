@@ -75,6 +75,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   # 'uav_rental.middleware.AuthenticationMiddleware',
+
 ]
 
 ROOT_URLCONF = 'uav_main.urls'
