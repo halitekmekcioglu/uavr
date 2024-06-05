@@ -12,8 +12,10 @@
     {% if perms.rental.can_manage_uav_inventory %}
     <h2>UAV Inventory Management</h2>
     <ul>
-        <li><a href="#">List Inventory</a></li>
-        <li><a href="#">Manage Inventory</a></li>
+        <li><a href="{% url 'list_inventory' %}">List Inventory</a></li>
+        <li><a href="{% url 'manage_inventory' %}">Manage Inventory</a></li>
+        
+        
     </ul>
     {% endif %}
 

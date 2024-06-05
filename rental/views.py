@@ -9,15 +9,15 @@ from django.contrib.auth import login, logout as auth_logout
 
 from .forms import UAVForm, RentalForm
 from django.shortcuts import render
-
+@login_required
 def inventory_management(request):
     # Your view logic here
      return render(request, 'inventory_management.html')
-
+@login_required
 def list_inventory(request):
     uavs = UAV.objects.all()
-    return render(request, 'rental/list_inventory.html', {'uavs': uavs})
-
+    return render(request, 'list_inventory.html', {'uavs': uavs})
+@login_required
 def manage_inventory(request):
     if request.method == 'POST':
         form = UAVForm(request.POST)
@@ -26,7 +26,7 @@ def manage_inventory(request):
             return redirect('list_inventory')
     else:
         form = UAVForm()
-    return render(request, 'rental/manage_inventory.html', {'form': form})
+    return render(request, 'manage_inventory.html', {'form': form})
 
 @login_required
 def rent_page(request):
