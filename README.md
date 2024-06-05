@@ -1,4 +1,5 @@
-Project Name Documentation
+UAV Rental Platform 
+
 Overview
 
 This documentation provides information about the setup and management of the [Project Name] Django project.
