@@ -1,41 +1,38 @@
+# views.py
+
 from rest_framework import viewsets, permissions
 from .models import UAV, Rental
 from .serializers import UAVSerializer, RentalSerializer
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-# views.py
-from django.shortcuts import render
 from django.contrib.auth.views import LoginView
-
-
-from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout as auth_logout
 
 from .forms import UAVForm, RentalForm
-from django.shortcuts import render
-from django.contrib.auth import logout
-from django.shortcuts import redirect
+
+class UAVViewSet(viewsets.ModelViewSet):
+    queryset = UAV.objects.all()
+    serializer_class = UAVSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class RentalViewSet(viewsets.ModelViewSet):
+    queryset = Rental.objects.all()
+    serializer_class = RentalSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 def logout_view(request):
-    logout(request)
-    # Redirect to a desired URL after logout
-    return redirect('login.html')  # Redirect to the login page after logout
-
+    auth_logout(request)
+    return redirect('login')  # Redirect to the login page after logout
 
 def home(request):
     return render(request, 'login.html')
 
-
 def base(request):
-    print("base")
     return render(request, 'base.html')
-
-@login_required
-def logout(request):
-    print("logout base")
-    return render(request, 'login.html')
 
 @login_required
 def profile(request):
@@ -53,10 +50,6 @@ def add_uav(request):
         form = UAVForm()
     return render(request, 'add_uav.html', {'form': form})
 
-# Similarly, create views for deleting, updating, and listing UAVs and rental records
-
-
-
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -68,31 +61,9 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
-
 class CustomLoginView(LoginView):
     template_name = 'login.html'
 
 @login_required
 def index(request):
     return render(request, 'index.html')
-
-
-class UAVViewSet(viewsets.ModelViewSet):
-    queryset = UAV.objects.all()
-    serializer_class = UAVSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-class RentalViewSet(viewsets.ModelViewSet):
-    queryset = Rental.objects.all()
-    serializer_class = RentalSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-
-
-
-
-
