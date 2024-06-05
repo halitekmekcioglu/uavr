@@ -1,5 +1,3 @@
-# views.py
-
 from rest_framework import viewsets, permissions
 from .models import UAV, Rental
 from .serializers import UAVSerializer, RentalSerializer
@@ -10,6 +8,30 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout as auth_logout
 
 from .forms import UAVForm, RentalForm
+from django.shortcuts import render
+
+def inventory_management(request):
+    # Your view logic here
+     return render(request, 'inventory_management.html')
+
+def list_inventory(request):
+    uavs = UAV.objects.all()
+    return render(request, 'rental/list_inventory.html', {'uavs': uavs})
+
+def manage_inventory(request):
+    if request.method == 'POST':
+        form = UAVForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_inventory')
+    else:
+        form = UAVForm()
+    return render(request, 'rental/manage_inventory.html', {'form': form})
+
+@login_required
+def rent_page(request):
+    rentable_uavs = UAV.objects.filter(rentable=True)
+    return render(request, 'rent_page.html', {'rentable_uavs': rentable_uavs})
 
 class UAVViewSet(viewsets.ModelViewSet):
     queryset = UAV.objects.all()
@@ -26,7 +48,7 @@ class RentalViewSet(viewsets.ModelViewSet):
 
 def logout_view(request):
     auth_logout(request)
-    return redirect('login')  # Redirect to the login page after logout
+    return redirect('login')
 
 def home(request):
     return render(request, 'login.html')
@@ -56,7 +78,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})

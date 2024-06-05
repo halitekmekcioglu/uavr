@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Rent Page</h1>
+
+    <h2>İHA Özellikleri:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Ağırlık</th>
+                <th>Kategori</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for uav in rentable_uavs %}
+                <tr>
+                    <td>{{ uav.brand }}</td>
+                    <td>{{ uav.model }}</td>
+                    <td>{{ uav.weight }}</td>
+                    <td>{{ uav.category }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>UAV İşlemleri</h2>
+    <ul>
+        <li><a href="#add-rent">Ekleme</a></li>
+        <li><a href="#delete-rent">Silme</a></li>
+        <li><a href="#rent-uav">Kiralama</a></li>
+    </ul>
+{% endblock %}
