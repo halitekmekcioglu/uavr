@@ -1,32 +1,41 @@
 from rest_framework import viewsets, permissions
-from .models import UAV, Rental
-from .serializers import UAVSerializer, RentalSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout as auth_logout
+from .forms import UAVForm, RentalForm, InventoryItemForm
+from .models import UAV, Rental
+from .serializers import UAVSerializer, RentalSerializer
 
-from .forms import UAVForm, RentalForm
 from django.shortcuts import render
-@login_required
-def inventory_management(request):
-    # Your view logic here
-     return render(request, 'inventory_management.html')
+from .models import InventoryItem
+
+from django.shortcuts import render
+from .models import InventoryItem
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def list_inventory(request):
-    uavs = UAV.objects.all()
-    return render(request, 'list_inventory.html', {'uavs': uavs})
+    inventory_items = InventoryItem.objects.all()
+    return render(request, 'list_inventory.html', {'inventory_items': inventory_items})
+
 @login_required
 def manage_inventory(request):
     if request.method == 'POST':
-        form = UAVForm(request.POST)
+        form = InventoryItemForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('list_inventory')
+            return redirect('list_inventory')  # Redirect to a success page
     else:
-        form = UAVForm()
+        form = InventoryItemForm()
     return render(request, 'manage_inventory.html', {'form': form})
+
+@login_required
+def inventory_management(request):
+    # Your view logic here
+    return render(request, 'inventory_management.html')
+
 
 @login_required
 def rent_page(request):

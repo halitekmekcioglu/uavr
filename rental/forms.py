@@ -1,5 +1,10 @@
 from django import forms
-from .models import UAV, Rental
+from .models import UAV, Rental, InventoryItem
+
+class InventoryItemForm(forms.ModelForm):
+    class Meta:
+        model = InventoryItem
+        fields = ['brand', 'model', 'weight', 'category', 'status', 'rented_to', 'from_date', 'to_date']
 
 class UAVForm(forms.ModelForm):
     class Meta:

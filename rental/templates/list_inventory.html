@@ -18,23 +18,27 @@
 <table class="table mt-4">
     <thead class="thead-dark">
         <tr>
-            <th>Marka</th>
+            <th>Brand</th>
             <th>Model</th>
-            <th>Ağırlık</th>
-            <th>Kategori</th>
-            <th>Durum</th>
-            <th>Tarih</th>
+            <th>Weight</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Rented To</th>
+            <th>From (Date)</th>
+            <th>To (Date)</th>
         </tr>
     </thead>
     <tbody>
-        {% for uav in uavs %}
+        {% for item in inventory_items %}
         <tr>
-            <td>{{ uav.brand }}</td>
-            <td>{{ uav.model }}</td>
-            <td>{{ uav.weight }}</td>
-            <td>{{ uav.category }}</td>
-            <td>{{ uav.status }}</td>
-            <td>{{ uav.date }}</td>
+            <td>{{ item.brand }}</td>
+            <td>{{ item.model }}</td>
+            <td>{{ item.weight }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.rented_to }}</td>
+            <td>{{ item.from_date }}</td>
+            <td>{{ item.to_date }}</td>
         </tr>
         {% endfor %}
     </tbody>
