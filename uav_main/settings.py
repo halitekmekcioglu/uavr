@@ -76,8 +76,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
    # 'uav_rental.middleware.AuthenticationMiddleware',
+    'rental.middleware.SessionTimeoutMiddleware', #this part was tricky, couldn't find middleware.py
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
 ]
+
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'uav_main.urls'
 
@@ -97,10 +103,10 @@ TEMPLATES = [
     },
 ]
 
-
-WSGI_APPLICATION = 'uav_main.wsgi.application'
-
-
+#and this part was also, made it comment if it's already defined in wsgi.py
+#WSGI_APPLICATION = 'uav_rental.wsgi.application'
+#WSGI_APPLICATION = 'wsgi.application'
+#WSGI_APPLICATION = 'edx_django_utils.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -121,6 +127,33 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+# settings.py
+
+# Set the session to expire after 30 minutes of inactivity
+SESSION_COOKIE_AGE = 1800  # 30 minutes in seconds
+
+# Ensure the session is invalidated when the user closes the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Optionally, make the session cookies secure and HTTP-only
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+
+
+# Other settings...
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# Directory to collect static files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Directories to search for static files in addition to each app's 'static' directory
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+LOGOUT_REDIRECT_URL = '/'  # Redirect to the home page or a specific view
 
 
 # Password validation

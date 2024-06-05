@@ -23,13 +23,19 @@ def logout_view(request):
     # Redirect to a desired URL after logout
     return redirect('login.html')  # Redirect to the login page after logout
 
-@login_required
+
+def home(request):
+    return render(request, 'login.html')
+
+
 def base(request):
+    print("base")
     return render(request, 'base.html')
 
 @login_required
 def logout(request):
-    return render(request, 'base.html')
+    print("logout base")
+    return render(request, 'login.html')
 
 @login_required
 def profile(request):

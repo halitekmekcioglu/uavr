@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UAVSerializer(serializers.ModelSerializer):
     class Meta:
-        model = 'yourappname.UAV'
+        model = 'uav_rental.UAV'
         fields = '__all__'
 
 class RentalSerializer(serializers.ModelSerializer):
@@ -18,5 +18,5 @@ class RentalSerializer(serializers.ModelSerializer):
         queryset=UAV.objects.all(), source='uav', write_only=True)
     
     class Meta:
-        model = 'yourappname.Rental'
+        model = 'uav_rental.Rental'
         fields = '__all__'
