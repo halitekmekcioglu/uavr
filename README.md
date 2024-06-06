@@ -1,5 +1,9 @@
 UAV Rental Platform 
 
+
+ScreenShots
+[screen-recorder-thu-jun-06-2024-10-52-15.webm](https://github.com/halitekmekcioglu/uavr/assets/51822438/ef410db2-b56d-43fc-a479-c701e96bdb0e)
+
 Overview
 
 This documentation provides information about the setup and management of the UAV Rental Platform Django project.
@@ -19,7 +23,7 @@ To get started with the project, follow these steps:
 
     bash
 
-[screen-recorder-thu-jun-06-2024-10-47-30.webm](https://github.com/halitekmekcioglu/uavr/assets/51822438/8ced3b47-7ade-4086-83ab-220ae7fee2dd)
+
 
 Install dependencies:
 
