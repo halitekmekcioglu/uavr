@@ -1,8 +1,10 @@
 UAV Rental Platform 
 
 
-ScreenShots
-[screen-recorder-thu-jun-06-2024-10-52-15.webm](https://github.com/halitekmekcioglu/uavr/assets/51822438/ef410db2-b56d-43fc-a479-c701e96bdb0e)
+ScreenShots:
+
+[screen-recorder-thu-jun-06-2024-10-52-15.webm](https://github.com/halitekmekcioglu/uavr/assets/51822438/6b61b2ff-040f-4ca5-8d9f-a56323f6ae5f)
+
 
 Overview
 
