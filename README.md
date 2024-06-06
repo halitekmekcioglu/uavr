@@ -19,6 +19,7 @@ To get started with the project, follow these steps:
 
     bash
 
+[screen-recorder-thu-jun-06-2024-10-47-30.webm](https://github.com/halitekmekcioglu/uavr/assets/51822438/8ced3b47-7ade-4086-83ab-220ae7fee2dd)
 
 Install dependencies:
 
